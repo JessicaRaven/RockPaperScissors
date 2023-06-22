@@ -14,6 +14,7 @@ function playerSign(){
     //ask for input
     let signs=["rock","paper","scissors"];
     let playerHand= prompt("rock, paper, scissors !");
+     if (playerHand===null) return null;
     //convert to lower case 
     playerHand= playerHand.toLowerCase();
     //save as player Hand if valid
@@ -33,9 +34,13 @@ function compareHands(){
     let computer=computerSign();
     //ask for players sign
     let player=playerSign();
+    //if menu close end game
+    if(player==null){
+        return null;
+    }
     //if player hand rock and pc hand scissors or player hand paper and pc hand rock or player hand scissors and pc hand paper
         //return +1
-    if ((player==="rock"&&computer==="scissors")||(player==="paper"&&computer==="rock")||(player==="scissors"&&computer==="paper")){
+    else if ((player==="rock"&&computer==="scissors")||(player==="paper"&&computer==="rock")||(player==="scissors"&&computer==="paper")){
         console.log("you win this round!");
         return +1;
     }
@@ -45,17 +50,38 @@ function compareHands(){
         console.log("better luck next round human");
         return -1;
     }
-    //if both hands equal
+        //if both hands equal
         //anounce draw
-        //run a new game and return result
+        //run a new hand and return result
     else {
         console.log("this round was a draw");
         return compareHands();
     }
 }
-//game
+function game(){
     // set score to 0
+    let computerScore=0;
+    let playerScore=0;
     //loop through 5 matches
-        //run compareHands
+    for (let i=0;i<5;i++){
+        result=compareHands();
+        if(result===null){
+            console.log("we can play later");
+            return;
+        }
+        //add score to right variable
+        if(result>0) playerScore += result;
+        else computerScore += result;
+
+        console.log("player: "+playerScore);
+        console.log("computer: "+ (1-computerScore));
+
+        if (playerScore===3){
+            console.log("congratulations you won");
+            return;}
+        if (computerScore===-3){
+            console.log("you are defeated human");}
         //add compare hands to score
+    }
     //if score positive anounce player victory if score negi anounce defeat
+}
