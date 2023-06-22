@@ -22,25 +22,37 @@ function playerSign(){
             return playerHand
         }
     }
-    //throw error if invalid
-    alert("invalid hand");
+    //throw error if invalid and retry
+    console.log("invalid hand");
     return playerSign(); 
 }
 
 //compare hands
+function compareHands(){
     //ask for computers sign
+    let computer=computerSign();
     //ask for players sign
-
+    let player=playerSign();
     //if player hand rock and pc hand scissors or player hand paper and pc hand rock or player hand scissors and pc hand paper
         //return +1
-
+    if ((player==="rock"&&computer==="scissors")||(player==="paper"&&computer==="rock")||(player==="scissors"&&computer==="paper")){
+        console.log("you win this round!");
+        return +1;
+    }
     //if any of the combinations for pc winning
         //return -1
-
+    else if((player==="rock"&&computer==="paper")||(player==="paper"&&computer==="scissors")||(player==="scissors"&&computer==="rock")){
+        console.log("better luck next round human");
+        return -1;
+    }
     //if both hands equal
         //anounce draw
         //run a new game and return result
-
+    else {
+        console.log("this round was a draw");
+        return compareHands();
+    }
+}
 //game
     // set score to 0
     //loop through 5 matches
