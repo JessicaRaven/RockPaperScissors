@@ -10,10 +10,22 @@ function computerSign(){
     
 
 //player input
+function playerSign(){
     //ask for input
+    let signs=["rock","paper","scissors"];
+    let playerHand= prompt("rock, paper, scissors !");
     //convert to lower case 
+    playerHand= playerHand.toLowerCase();
     //save as player Hand if valid
+    for (let i=0;i<=2;i++){
+        if (playerHand===signs[i]){
+            return playerHand
+        }
+    }
     //throw error if invalid
+    alert("invalid hand");
+    return playerSign(); 
+}
 
 //compare hands
     //ask for computers sign
